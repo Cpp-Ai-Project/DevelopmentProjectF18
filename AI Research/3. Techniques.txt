@@ -1,0 +1,3 @@
+http://www.cs.uni.edu/~schafer/4620/readings/Ai%20Techniques%20For%20Game%20Programming.pdf
+
+https://www.gamasutra.com/view/news/269634/7_examples_of_game_AI_that_every_developer_should_study.php
