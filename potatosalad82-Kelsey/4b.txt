@@ -1,0 +1,46 @@
+inflobj = open('BookText.txt.txt','r')
+lines = inflobj.readlines()
+text = []
+for ein range(0, len(lines)):
+	text.extend(lines[e].split())
+	print(text)
+
+numCharacters = 60
+buckets = [[] for ein range(0, numCharacters)]
+
+#find longest element
+max_length = len(text[0])
+for ein range(1, len(text)):
+	temp = len(text[e])
+	if temp > max_length:
+		max_length = temp
+		
+print("Maximum length: " + str(max_length))
+
+#make everything the same length
+for ein range(0, len(text)):
+	#print(text[e])
+	text[e] = '{:>{}s}'.format(text[e], max_length)
+	#print(text[e])
+	
+print(text)
+
+print()
+
+e= 0
+while e< max_length:
+	for m in range(0,len(text)):
+		j = m + 97
+		if(e== 0):
+			buckets[int(ord(text[j][-1*(e+1):])-65)].append(text[j])
+		else:
+			buckets[int(ord(text[j][-1*(e+1):-1*e])-65)].append(text[j])
+	text.clear()
+	for m in range(0, numCharacters):
+		j = m + 97
+		for k in range(0, len(buckets[j])):
+			text.append(buckets[j].pop(0))
+	
+	e= e+1
+
+print(text)	
