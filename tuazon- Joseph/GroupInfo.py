@@ -67,6 +67,11 @@ cs4650 = Class("CS", 4650, 1000, 1115)
 cs3010 = Class("CS", 3010, 1430, 1545)
 hst2020 = Class("HST", 2020, 1430, 1545)
 
+cs1300 = Class("CS", 1300, 930, 1030)
+cs1400 = Class("CS", 1400, 300, 450)
+mat1150 = Class("MAT", 1150, 800,945)
+kin1320 = Class("kin", 1320, 600, 745)
+
 cs4200 = Class("CS", 4200, 1000, 1130)
 com1000 = Class("COM", 1000, 1300, 1400)
 lin2000 = Class("ECE", 6900, 1430, 1545)
@@ -79,11 +84,13 @@ kin2700 = Class("KIN", 2700, 1000, 1000)
 
 joseph = Group_Member("Joseph Tuazon", "ComSci", [cs3110, cs4650, cs3010, hst2020])
 
+kelsey = Group_Member("Kelsey Coen", "ComSci", [cs1300, cs1400, mat1150, kin1320])
+
 pomoko = Group_Member("Pomoko-Chan", "Food Science", [cs4200, com1000, lin2000])
 
 jarod = Group_Member("Jarod Nakamoto", "ComSci", [cs4650, cs42001, cs4110, cs4310, cs4630, kin2700])
 
-group11 = Group_11([joseph, pomoko, jarod])
+group11 = Group_11([joseph, pomoko, jarod, kelsey])
 
 group11.print_members()
 print("Can Group 11 meet: " + str(group11.meet_up("Monday", 950)))
