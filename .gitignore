@@ -105,3 +105,6 @@ venv.bak/
 
 #IntelliJ files
 .xml
+
+#macOS
+.DS_Store
