@@ -1,13 +1,3 @@
-"""
-Simple asteroids clone written in Python
-     _        _                 _     _     
-    / \   ___| |_ ___ _ __ ___ (_) __| |___ 
-   / _ \ / __| __/ _ \ '__/ _ \| |/ _` / __|
-  / ___ \\__ \ ||  __/ | | (_) | | (_| \__ \
- /_/   \_\___/\__\___|_|  \___/|_|\__,_|___/
-by Amin Bandali
-
-"""
 from __future__ import division
 import math
 import sys
@@ -101,7 +91,6 @@ class Spaceship(GameObject):
         
         draw_centered(new_image, screen, self.position)
 
-
     def move(self):
         """Do one frame's worth of updating for the object"""
         
@@ -112,7 +101,6 @@ class Spaceship(GameObject):
         # calculate the position from the direction and speed
         self.position[0] += self.direction[0]*self.speed
         self.position[1] += self.direction[1]*self.speed
-
 
     def fire(self):
         """create a new Missile and fire it!!"""
@@ -134,7 +122,6 @@ class Spaceship(GameObject):
         self.active_missiles.append(new_missile)
 
 
-
 class Missile(GameObject):
     """Resembles a missile"""
     def __init__(self, position, angle, speed=15):
@@ -144,7 +131,6 @@ class Missile(GameObject):
         self.angle = angle
         self.direction = [0, 0]
         self.speed = speed        
-
 
     def move(self):
         """Move the missile towards its destination"""
@@ -157,8 +143,7 @@ class Missile(GameObject):
         self.position[0] += self.direction[0]*self.speed
         self.position[1] += self.direction[1]*self.speed
 
-        
-    
+
 class Rock(GameObject):
     """Resembles a rock"""
     def __init__(self, position, size, speed=4):
@@ -194,13 +179,11 @@ class Rock(GameObject):
 
         self.direction = [rand_x, rand_y]
 
-
     def move(self):
         """Move the rock"""
 
         self.position[0] += self.direction[0]*self.speed
         self.position[1] += self.direction[1]*self.speed
-
 
 
 class MyGame(object):
@@ -259,11 +242,10 @@ class MyGame(object):
         # to prevent firing too many missiles in a short time
         self.fire_time = datetime.datetime.now()
 
-
     def do_welcome(self):
         """make a welcome screen"""
-
         # go to WELCOME state
+
         self.state = MyGame.WELCOME
 
         # making the welcome title and description
@@ -271,7 +253,6 @@ class MyGame(object):
                                                 True, (255, 215, 0))
         self.welcome_desc =  self.medium_font.render(\
             "[Click anywhere/press Enter] to begin!", True, (35, 107, 142))
-
 
     def do_init(self):
         """This function is called in the beginning or when
@@ -301,7 +282,6 @@ class MyGame(object):
         # timer used to count the number of seconds elapsed
         self.timer = 0
 
-    
 
     def make_rock(self, size="big", pos=None):
         """Make a new rock"""
@@ -333,7 +313,6 @@ class MyGame(object):
         # add the recently created rock the the actual rocks list
         self.rocks.append(temp_rock)
 
-
     def start(self):
         """Start the game by creating the spaceship object"""
         self.spaceship = Spaceship((self.width//2, self.height//2))
@@ -344,7 +323,6 @@ class MyGame(object):
 
         # set the state to PLAYING
         self.state = MyGame.PLAYING
-
 
     def run(self):
         """Loop forever processing events"""
@@ -457,7 +435,6 @@ class MyGame(object):
             else:
                 pass # an event type we don't handle            
 
-
     def game_over(self):
         """Losing a life"""
         self.soundtrack.stop()
@@ -466,7 +443,6 @@ class MyGame(object):
         self.gameover_sound.play()
         delay = int((self.gameover_sound.get_length()+1)*1000)
         pygame.time.set_timer(MyGame.RESTART, delay)
-
 
     def die(self):
         """Losing a life"""
@@ -478,7 +454,6 @@ class MyGame(object):
         self.die_sound.play()
         delay = int((self.die_sound.get_length()+1)*1000)
         pygame.time.set_timer(MyGame.START, delay)
-
 
     def physics(self):
         """Do spaceship physics here"""
@@ -493,7 +468,6 @@ class MyGame(object):
             or make it not move out of screen when it reaches the borders.
             Due to lack of time, I can't implement any of them, but they are
             not hard to do at all."""
-
 
     def missiles_physics(self):
         """Do all the physics of missiles"""
@@ -545,7 +519,6 @@ class MyGame(object):
                             
                             self.score += 100
 
-
     def rocks_physics(self):
         """Move the rocks if there are any"""
 
@@ -555,7 +528,6 @@ class MyGame(object):
             for rock in self.rocks:
                 # move the rock
                 rock.move()
-
 
                 # if the rock hits the spaceship, die once
                 if distance(rock.position, self.spaceship.position) < \
@@ -570,7 +542,6 @@ class MyGame(object):
                     self.rocks.remove(rock)
                     if len(self.rocks) < 10:
                         self.make_rock(rock.size)
-
 
     def draw(self):
         """Update the display"""
