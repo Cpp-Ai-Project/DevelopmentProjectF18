@@ -1,2 +1,3 @@
 Name,Best Contact,Discord Username(# included)
 Lam Lieu, lslieu@cpp.edu, Born#7828
+Jess Mora, (623) 910-5395, JessMora#5613
