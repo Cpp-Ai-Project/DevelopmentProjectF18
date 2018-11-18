@@ -209,6 +209,8 @@ class MyGame(object):
         self.bg_color = 0, 0, 0
 
         # loading the sound track for the game
+
+        ''' 
         self.soundtrack = load_sound('soundtrack.wav')
         self.soundtrack.set_volume(.3)
 
@@ -216,6 +218,8 @@ class MyGame(object):
         self.die_sound = load_sound('die.wav')
         self.gameover_sound = load_sound('game_over.wav')
         self.missile_sound = load_sound('fire.wav')
+        
+        '''
 
         # get the default system font (with different sizes of 100, 50, 25)
         self.big_font = pygame.font.SysFont(None, 100)
@@ -319,7 +323,7 @@ class MyGame(object):
         self.missiles = []
 
         # start the sound track loop
-        self.soundtrack.play(-1, 0, 1000)
+        # self.soundtrack.play(-1, 0, 1000)
 
         # set the state to PLAYING
         self.state = MyGame.PLAYING
@@ -352,7 +356,7 @@ class MyGame(object):
                             self.spaceship.fire()
 
                             # play the sound
-                            self.missile_sound.play()
+                            # self.missile_sound.play()
 
                             # record the current fire time
                             self.fire_time = new_time
@@ -437,22 +441,24 @@ class MyGame(object):
 
     def game_over(self):
         """Losing a life"""
-        self.soundtrack.stop()
+        # self.soundtrack.stop()
         # play game over sound and wait for it to end before continuing
         self.state = MyGame.GAME_OVER
-        self.gameover_sound.play()
-        delay = int((self.gameover_sound.get_length()+1)*1000)
+        # self.gameover_sound.play()
+        # delay = int((self.gameover_sound.get_length()+1)*1000)
+        delay = int(5)
         pygame.time.set_timer(MyGame.RESTART, delay)
 
     def die(self):
         """Losing a life"""
-        self.soundtrack.stop()
+        # self.soundtrack.stop()
         # play dying sound and wait for it to end before continuing
         self.lives -= 1
         self.counter = 0        
         self.state = MyGame.DYING
-        self.die_sound.play()
-        delay = int((self.die_sound.get_length()+1)*1000)
+        # self.die_sound.play()
+        # delay = int((self.die_sound.get_length()+1)*1000)
+        delay = int(5)
         pygame.time.set_timer(MyGame.START, delay)
 
     def physics(self):
