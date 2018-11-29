@@ -46,7 +46,7 @@ def distance(p, q):
 
 class GameObject(object):
     """All game objects have a position and an image"""
-    def __init__(self, position, image, speed=7):
+    def __init__(self, position, image, speed=0):
         # max speed should be 6.5
         self.image = image
         self.position = list(position[:])
@@ -124,7 +124,7 @@ class Spaceship(GameObject):
 
 class Missile(GameObject):
     """Resembles a missile"""
-    def __init__(self, position, angle, speed=37):
+    def __init__(self, position, angle, speed=15):
         super(Missile, self).__init__(position,\
             load_image_convert_alpha('missile.png'))
 
@@ -146,7 +146,7 @@ class Missile(GameObject):
 
 class Rock(GameObject):
     """Resembles a rock"""
-    def __init__(self, position, size, speed=10):
+    def __init__(self, position, size, speed=4):
         """Initialize a Rock object, given its position and size"""
 
         # if the size is valid
@@ -236,9 +236,7 @@ class MyGame(object):
         self.death_distances = {"big":90,"normal":65 ,"small":40}
 
         # display the welcome screen
-        # self.do_welcome()
-
-        self.do_init()
+        self.do_welcome()
 
         # used to monitor missile firing time
         # to prevent firing too many missiles in a short time
@@ -265,7 +263,7 @@ class MyGame(object):
 
         # minimum distance from spaceship when making rocks
         # this changes based on difficulty as the time passes
-        self.min_rock_distance = 250
+        self.min_rock_distance = 350
 
         # starting the game
         self.start()
@@ -346,7 +344,7 @@ class MyGame(object):
                     if keys[pygame.K_SPACE]:
                         new_time = datetime.datetime.now()
                         if new_time - self.fire_time > \
-                                datetime.timedelta(seconds=0.05):
+                                datetime.timedelta(seconds=0.15):
                             # there should be a minimum of 0.15 delay between
                             # firing each missile
 
@@ -365,13 +363,13 @@ class MyGame(object):
                         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                             # when pressing "d" or "right arrow" rotate
                             # the spaceship clockwise by 10 degrees
-                            self.spaceship.angle -= 25
+                            self.spaceship.angle -= 10
                             self.spaceship.angle %= 360
 
                         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
                             # when pressing "d" or "right arrow" rotate
                             # the spaceship counter clockwise by 10 degrees
-                            self.spaceship.angle += 25
+                            self.spaceship.angle += 10
                             self.spaceship.angle %= 360
 
                         if keys[pygame.K_UP] or keys[pygame.K_w]:
@@ -380,8 +378,8 @@ class MyGame(object):
                             self.spaceship.is_throttle_on = True
                             
                             # increase the speed
-                            if self.spaceship.speed < 45:
-                                self.spaceship.speed += 3
+                            if self.spaceship.speed < 20:
+                                self.spaceship.speed += 1
                         else:
                             # if the throttle key ("d" or "up")
                             # is not pressed, slow down
@@ -457,8 +455,6 @@ class MyGame(object):
         delay = int((self.die_sound.get_length()+1)*1000)
         pygame.time.set_timer(MyGame.START, delay)
 
-
-    # spaceship physics here
     def physics(self):
         """Do spaceship physics here"""
         
