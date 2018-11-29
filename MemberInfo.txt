@@ -1,6 +1,0 @@
-Name,Best Contact,Discord Username(# included)
-
-Jake Wagner, Contact on Discord: #Jake57 or Email: jrwagner@cpp.edu
-Chris Rauch
-Zach Muraca
-Colby Le, czle@cpp.edu, Colbcumber#6583
